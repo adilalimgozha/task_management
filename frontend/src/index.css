@@ -1,0 +1,8 @@
+.task-checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.task-not-checked {
+    text-decoration: none;
+}
