@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TaskForm = ({fetchTasks}) => {
 
     const [title, setTitle] = useState("")
     const [descr, setDescr] = useState("")
+
+    const navigate = useNavigate()
 
     const addTask = async (e) => {
         e.preventDefault();
@@ -22,25 +25,29 @@ const TaskForm = ({fetchTasks}) => {
 
         setTitle('');
         setDescr('');
-        fetchTasks();
+        fetchTasks()
+        navigate('/')
     }
 
 
 
     return (
-        <form onSubmit={addTask}>
-                <label htmlFor="title">Title</label>
-                <input name="title"  type="text" value={title}
-                onChange={(e) => setTitle(e.target.value)}/>
-                <br />
+        <div>
+            <h1>Add Task</h1>
+            <form onSubmit={addTask}>
+                    <label htmlFor="title">Title</label>
+                    <input name="title"  type="text" value={title}
+                    onChange={(e) => setTitle(e.target.value)}/>
+                    <br />
 
-                <label htmlFor="description">Description</label>
-                <input name="description"  type="text"  value={descr}
-                onChange={(e) => setDescr(e.target.value)}/>
-                <br />
+                    <label htmlFor="description">Description</label>
+                    <input name="description"  type="text"  value={descr}
+                    onChange={(e) => setDescr(e.target.value)}/>
+                    <br />
 
-                <button type="submit">Add</button>
-        </form>
+                    <button type="submit">Add</button>
+            </form>
+        </div>
     )
 }
 

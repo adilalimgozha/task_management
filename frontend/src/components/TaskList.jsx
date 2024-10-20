@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const TaskList = ({tasks, fetchTasks}) => {
 
@@ -32,19 +33,21 @@ const TaskList = ({tasks, fetchTasks}) => {
 
     
 
+    
+
     return (
         <div>
             <h1>Task List</h1>
             <ul>
                 {tasks.map((task) => (
-                    <li key={task.ID} className={task.status === "Done" ? 'task-checked' : "task-not-checked"}>
-                        <h3 className='title'>{task.title}</h3>
+                    <li key={task.ID}>
+                        <h3 className={task.status === "Done" ? 'task-checked' : "task-not-checked"}>{task.title}</h3>
                         <div>
-                            <p>{task.description}</p>
                             <input type="checkbox" 
                             checked={task.status === "Done"} 
                             onChange={(e) => checkboxChange(task.ID, e.target.checked)} 
                             name={task.title}/>
+                            <Link to={`/tasks/${task.ID}`}>Details</Link>
                             <button onClick={() => deleteTask(task.ID)}>Delete</button>
                         </div>
                     </li>

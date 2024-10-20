@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import TaskForm from './TaskForm';
+import { Link } from 'react-router-dom';
 import TaskList from './TaskList';
 
-const TaskManager = () => {
-    const [tasks, setTasks] = useState([]);
-
-    const fetchTasks = async () => {
-        const response = await fetch('http://localhost:8080/tasks');
-        const data = await response.json();
-        setTasks(data);
-    };
-
-    useEffect(() => {
-        fetchTasks(); 
-    }, []);
+const TaskManager = ({tasks, fetchTasks}) => {
 
     return (
         <div>
             <TaskList tasks={tasks} fetchTasks={fetchTasks}></TaskList>
-            <TaskForm fetchTasks={fetchTasks}></TaskForm>
+        
+            <Link to="/add">Add New Task</Link>
         </div>
     );
 }
