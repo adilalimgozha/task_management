@@ -40,6 +40,7 @@ const TaskEdit = ({tasks, fetchTasks}) => {
  
     return(
         <div>
+            <h1>Edit</h1>
             <form onSubmit={handleEdit}>
                 <label htmlFor="title">Title</label>
                 <input name="title"  type="text" value={title}
